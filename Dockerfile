@@ -17,4 +17,4 @@ RUN npm install -g yo generator-hubot
 RUN git clone https://github.com/kse201/hubot
 WORKDIR /hubot
 RUN npm install
-RUN ./bin/hubot
+RUN ./runhubot.sh
