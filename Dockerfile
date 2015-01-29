@@ -14,7 +14,13 @@ RUN npm update -g npm
 RUN npm install -g coffee-script hubot
 RUN npm install -g yo generator-hubot
 
+#ADD * /hubot/
 RUN git clone https://github.com/kse201/hubot
 WORKDIR /hubot
 RUN npm install
-RUN ./runhubot.sh
+
+EXPOSE 3000
+RUN mkdir /var/log/irc
+VOLUME ["/var/log/irc"]
+
+CMD ./runhubot.sh
