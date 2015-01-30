@@ -1,5 +1,5 @@
 FROM centos
-MAINTAINER kse201
+MAINTAINER kse201 <kse.201@gmail.com>
 
 # ENV http_proxy  <HTTP_PROXY>
 # ENV https_proxy <HTTPS_RPXY>
@@ -8,14 +8,12 @@ MAINTAINER kse201
 
 RUN yum install -y epel-release
 RUN yum install -y nodejs redis npm
-RUN yum install -y git
 
 RUN npm update -g npm
 RUN npm install -g coffee-script hubot
 RUN npm install -g yo generator-hubot
 
-#ADD * /hubot/
-RUN git clone https://github.com/kse201/docker-hubot
+ADD . /hubot/
 WORKDIR /hubot
 RUN npm install
 
