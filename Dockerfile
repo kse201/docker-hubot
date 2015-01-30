@@ -11,7 +11,6 @@ RUN yum install -y nodejs redis npm
 
 RUN npm update -g npm
 RUN npm install -g coffee-script hubot
-RUN npm install -g yo generator-hubot
 
 ADD . /hubot/
 WORKDIR /hubot

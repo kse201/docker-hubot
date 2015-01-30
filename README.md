@@ -8,8 +8,9 @@
 ### run container
 ```
 # docker run \
-  -p 3000:3000\
-  -v /var/log/irc:/var/log/irc\
+  -p 3000:3000 \
+  -v /var/log/irc:/var/log/irc \
+  -v /etc/localtime:/etc/localtime:ro \
   -e 'HUBOT_IRC_SERVER=irc.ircnet.ne.jp' \
   -e 'HUBOT_IRC_PORT=6667' \
   -e 'HUBOT_IRC_ROOMS=#channel' \
