@@ -16,6 +16,7 @@
   -e 'HUBOT_IRC_ROOMS=#channel' \
   -e 'HUBOT_IRC_USERNAME=hubot' \
   -e 'HUBOT_IRC_NICK=hubot' \
+  -e "HUBOT_TICKET_PATTERNS='{"keyword":"http://foo.bar/redmine/issues"}'" \
   -e 'IRCLOGS_PORT=3000' \
   -e 'IRCLOGS_FOLDER=/var/log/irc' \
   -d -t kse201/hubot
