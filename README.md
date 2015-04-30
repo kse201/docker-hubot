@@ -20,3 +20,7 @@
   -e 'IRCLOGS_FOLDER=/var/log/irc' \
   -d -t kse201/hubot
 ```
+## test
+```
+$ mocha
+```
