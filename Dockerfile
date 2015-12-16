@@ -1,10 +1,5 @@
-FROM centos
+FROM centos:7
 MAINTAINER kse201 <kse.201@gmail.com>
-
-# ENV http_proxy  <HTTP_PROXY>
-# ENV https_proxy <HTTPS_RPXY>
-# ENV HTTP_PROXY  <HTTP_RPXY>
-# ENV HTTPS_PROXY <HTTPS_RPXY>
 
 RUN yum install -y epel-release
 RUN yum install -y nodejs redis npm
