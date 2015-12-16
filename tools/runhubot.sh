@@ -7,9 +7,6 @@ export HUBOT_IRC_USERNAME="hubot"
 export HUBOT_IRC_NICK="hubot"
 # export HUBOT_IRC_PASSWORD="password"
 
-export IRCLOGS_PORT=3000
-export IRCLOGS_FOLDER="/var/log/irc"
-
 ./bin/hubot \
     -a irc \
     -n hubot 
