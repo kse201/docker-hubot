@@ -16,10 +16,6 @@ ADD . /hubot/
 WORKDIR /hubot
 RUN npm install
 
-EXPOSE 3000
-RUN mkdir /var/log/irc
-VOLUME ["/var/log/irc"]
-
 CMD ./bin/hubot \
   -a irc \
   -n hubot

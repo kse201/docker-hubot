@@ -8,8 +8,6 @@
 ### run container
 ```
 # docker run \
-  -p 3000:3000 \
-  -v /var/log/irc:/var/log/irc \
   -v /etc/localtime:/etc/localtime:ro \
   -e 'HUBOT_IRC_SERVER=irc.ircnet.ne.jp' \
   -e 'HUBOT_IRC_PORT=6667' \
@@ -17,8 +15,6 @@
   -e 'HUBOT_IRC_USERNAME=hubot' \
   -e 'HUBOT_IRC_NICK=hubot' \
   -e "HUBOT_TICKET_PATTERNS='{"keyword":"http://foo.bar/redmine/issues"}'" \
-  -e 'IRCLOGS_PORT=3000' \
-  -e 'IRCLOGS_FOLDER=/var/log/irc' \
   -d -t kse201/hubot
 ```
 ## test
