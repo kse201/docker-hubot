@@ -1,3 +1,16 @@
+# Description
+#   response ticket URL
+#
+# Configuration:
+#   None
+#
+# Commands:
+#   <keyword> #XXXX.. response ticket URL
+
+# Author:
+#   kse201 <kse.201@gmail.com>
+#   
+
 config =
   ticket_patterns: JSON.parse(process.env.HUBOT_TICKET_PATTERNS ? '{}')
 module.exports = (robot) ->
