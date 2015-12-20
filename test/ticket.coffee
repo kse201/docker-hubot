@@ -1,7 +1,7 @@
 require './helper'
 TextMessage = require('hubot/src/message').TextMessage
-process.env.HUBOT_TICKET_PATTERNS = '{ "redmine1":"http://redmine1/redmine/issues" , "redmine2":"http://redmine2/redmine/issues" }' 
-describe 'ticket', ->  
+process.env.HUBOT_TICKET_PATTERNS = '{ "redmine1":"http://redmine1/redmine/issues" , "redmine2":"http://redmine2/redmine/issues" }'
+describe 'ticket', ->
   {robot, user, adapter} = {}
 
   shared_context.robot_is_running (ret) ->
@@ -25,11 +25,3 @@ describe 'ticket', ->
     , done
 
     adapter.receive(new TextMessage(user, 'redmine2 #100'))
-
-  it 'responds no URL', (done) ->
-    adapter.on 'send', (envelope, strings) ->
-      expect(envelope.user.name).to.equal('mocha')
-      expect(strings[0]).to.equal('')
-    , done
-
-    adapter.receive(new TextMessage(user, 'non-redmine #100'))
