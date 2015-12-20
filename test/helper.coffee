@@ -1,8 +1,8 @@
-global.expect = require('chai').expect  
+global.expect = require('chai').expect
 global.sinon = require 'sinon'
 
-global.shared_context = {}  
-global.shared_context.robot_is_running = (callback) ->  
+global.shared_context = {}
+global.shared_context.robot_is_running = (callback) ->
   helper = require 'hubot-mock-adapter-helper'
   robot = null
 

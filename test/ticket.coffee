@@ -12,16 +12,20 @@ describe 'ticket', ->
 
   it 'responds redmine1 tichet URL', (done) ->
     adapter.on 'send', (envelope, strings) ->
-      expect(envelope.user.name).to.equal('mocha')
-      expect(strings[0]).to.equal('http://redmine1/redmine/issues/100')
-    , done
+      try
+        expect(strings[0]).to.equal 'http://redmine1/redmine/issues/100'
+        do done
+      catch e
+        done e
 
-    adapter.receive(new TextMessage(user, 'redmine1 #100'))
+    adapter.receive new TextMessage user, 'redmine1 #100'
 
   it 'responds redmine2 tichet URL', (done) ->
     adapter.on 'send', (envelope, strings) ->
-      expect(envelope.user.name).to.equal('mocha')
-      expect(strings[0]).to.equal('http://redmine2/redmine/issues/100')
-    , done
+      try
+        expect(strings[0]).to.equal 'http://redmine2/redmine/issues/100'
+        do done
+      catch e
+        done e
 
-    adapter.receive(new TextMessage(user, 'redmine2 #100'))
+    adapter.receive new TextMessage user, 'redmine2 #100'
