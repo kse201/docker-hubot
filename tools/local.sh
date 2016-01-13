@@ -1,4 +1,5 @@
 #!/bin/bash
-./bin/hubot \
+
+HUBOT_LOG_LEVEL=debug ./bin/hubot \
     -a shell\
     -n hubot 
