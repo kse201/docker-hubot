@@ -18,7 +18,8 @@
     "hubot-pugme": "~0.1.0",
     "hubot-rules": "~0.1.1",
     "hubot-google-images": "~0.2.6",
-    "hubot-google-translate": "~0.2.0"
+    "hubot-google-translate": "~0.2.0",
+    "hubot-cron": "~0.2.9"
   },
   "engines": {
     "node": "0.10.x"
