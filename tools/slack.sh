@@ -1,10 +1,14 @@
 #!/bin/bash
 
+source ./hubotrc
+
+export HUBOT_NAME="hubot"
+export HUBOT_ADAPTOR="slack"
+
 export HUBOT_SLACK_TOKEN=""
 export HUBOT_SLACK_TEAM=""
-export HUBOT_SLACK_BOTNAME=hubot 
-# export HUBOT_LOG_LEVEL=debug
+export HUBOT_SLACK_BOTNAME=${HUBOT_NAME}
 
 ./bin/hubot \
-    -a slack \
-    -n hubot 
+  -a ${HUBOT_ADAPTOR}\
+  -n ${HUBOT_NAME}

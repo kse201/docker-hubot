@@ -1,5 +1,7 @@
 #!/bin/bash
 
+source ./hubotrc
+
 export HUBOT_IRC_SERVER="localhost"
 export HUBOT_IRC_PORT="6667"
 export HUBOT_IRC_ROOMS="#bot"

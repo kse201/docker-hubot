@@ -1,5 +1,9 @@
 #!/bin/bash
+source ./hubotrc
 
-HUBOT_LOG_LEVEL=debug ./bin/hubot \
-    -a shell\
-    -n hubot 
+export HUBOT_NAME="hubot"
+export HUBOT_ADAPTOR="irc"
+
+./bin/hubot \
+  -a ${HUBOT_ADAPTOR}\
+  -n ${HUBOT_NAME}
