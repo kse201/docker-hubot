@@ -1,8 +1,8 @@
 #!/bin/bash
-source ./hubotrc
+source ./tools/hubotrc
 
 export HUBOT_NAME="hubot"
-export HUBOT_ADAPTOR="irc"
+export HUBOT_ADAPTOR="shell"
 
 ./bin/hubot \
   -a ${HUBOT_ADAPTOR}\

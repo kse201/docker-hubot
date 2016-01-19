@@ -1,2 +1,4 @@
 export HUBOT_LOG_LEVEL=debug
 export FILE_BRAIN_PATH="./var"
+
+# vim: ft=sh

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source ./hubotrc
+source ./tools/hubotrc
 
 export HUBOT_IRC_SERVER="localhost"
 export HUBOT_IRC_PORT="6667"
