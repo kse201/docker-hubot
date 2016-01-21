@@ -1,5 +1,6 @@
 #!/bin/bash
 
+pushd $(dirname $0)/../
 source ./tools/hubotrc
 
 export HUBOT_NAME="hubot"
