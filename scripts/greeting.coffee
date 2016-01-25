@@ -7,9 +7,9 @@ module.exports = (robot) ->
     enter_user = resp.message.user.name
     robot.logger.debug (resp.robot.name in enter_user)
     if resp.robot.name == enter_user
-        user = "guys"
+      user = "guys"
     else
-        user = enter_user
+      user = enter_user
 
     resp.send "hey #{user}!"
 

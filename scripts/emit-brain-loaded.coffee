@@ -12,5 +12,5 @@
 #
 module.exports = (robot) ->
   robot.respond /emit loaded/, (resp) ->
-      robot.brain.emit 'loaded', robot.brain.data
-      resp.send "emit 'loaded'"
+    robot.brain.emit 'loaded', robot.brain.data
+    resp.send "emit 'loaded'"
