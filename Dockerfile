@@ -1,16 +1,17 @@
 FROM centos:7
 MAINTAINER kse201 <kse.201@gmail.com>
 
-RUN yum install -y epel-release
-RUN yum install -y nodejs redis npm
+RUN yum update -y && \
+    yum install -y git epel-release && \
+    yum install -y nodejs redis npm && \
+    yum clean all
 
-RUN npm update -g npm
-RUN npm install -g coffee-script hubot
+RUN git config --global url."https://".insteadOf git://
+RUN npm update -g npm && \
+    npm cache clean
 
-ADD . /hubot/
-WORKDIR /hubot
-RUN npm install
+ADD ./src /opt/hubot/
+WORKDIR "/opt/hubot"
+VOLUME ["/opt/hubot/conf"]
 
-CMD ./bin/hubot \
-  -a irc \
-  -n hubot
+ENTRYPOINT ["./bin/run-hubot"]

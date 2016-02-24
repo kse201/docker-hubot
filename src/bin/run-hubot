@@ -1,0 +1,111 @@
+#!/bin/sh -e
+
+USAGE="$(basename $(readlink -f $0))
+    -n|--name <name>    hubot name
+    -a|--adapter <adapter> hubot adapter
+    [--external-scripts <script1,script2,...>]
+    [--hubot-scripts <script1,script2,...>]
+    [--env-file <env.ini>]
+"
+export PATH="node_modules/.bin:node_modules/hubot/node_modules/.bin:$PATH"
+
+SUCCESS=0
+E_INTERNAL=1
+E_INI=2
+E_INSTALL_SCRIPTS=3
+
+is_failed()    { [ "$1" != ${SUCCESS} ]; }
+
+load_ini() {
+	ini_file=$1
+
+    eval export $(sed -e 's/[[:space:]]*\=[[:space:]]*/=/g' \
+		-e 's/;.*$//' \
+		-e 's/[[:space:]]*$//' \
+		-e 's/^[[:space:]]*//' \
+		-e "s/^\(.*\)=\([^\"']*\)$/\1=\"\2\"/" \
+		< $ini_file )
+}
+
+install_scripts() {
+    external_scripts=$1
+
+    for s in ${external_scripts[@]} ; do
+        npm i "$s"
+        is_failed $? && return ${E_INSTALL_SCRIPTS}
+    done
+    return ${SUCCESS}
+}
+
+install_adapter() {
+    adapter=$1
+
+    npm i hubot-${adapter}
+}
+
+create_script_json() {
+    json_name=$1 ; shift
+    scripts=$@
+
+    echo '[' > ${json_name}
+    for s in ${scripts[@]} ; do
+        echo "    \"$s\"," >> ${json_name}
+    done
+    sed -i "s/$s\",/$s\"/" ${json_name}
+    echo ']' >> ${json_name}
+}
+
+usage() {
+    cat << EOL
+Usage: $USAGE
+EOL
+}
+
+main() {
+    if [ $# -eq 0 ] ; then
+        usage
+        return ${E_INTERNAL}
+    fi
+
+    for OPT in "$@" ; do
+        case "$OPT" in
+            '-n'|'--name' )
+                name=$2 ; shift 2;;
+            '-a'|'--adapter' )
+                adapter=$2 ; shift 2;;
+            '--external-scripts' )
+                external_scripts=$2 ; shift 2;;
+            '--hubot-scripts' )
+                hubot_scripts=$2 ; shift 2;;
+            '--env-file' )
+                env_file=$2 ; shift 2;;
+            *)
+                ;;
+        esac
+    done
+
+    if [ -v "env_file" ] ; then
+        load_ini "${env_file}"
+        is_failed $? && exit ${E_INI}
+    fi
+
+    if [ -v "external_scripts" ] ; then
+        external_scripts=($(echo $external_scripts | tr -s ',' ' '))
+        echo ${external_scripts[@]}
+        install_scripts ${external_scripts}
+        create_script_json "external-scripts.json" ${external_scripts[@]}
+    fi
+
+    if [ -v "hubot_scripts" ] ; then
+        hubot_scripts=($(echo $hubot_scripts | tr -s ',' ' '))
+        create_script_json "hubot-scripts.json" ${hubot_scripts[@]}
+    fi
+
+    install_adapter ${adapter}
+
+    npm i
+    exec ./node_modules/.bin/hubot -a ${adapter} -n ${name}
+}
+
+pushd $(dirname $0)/../
+main $@
