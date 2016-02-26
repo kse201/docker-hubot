@@ -12,6 +12,6 @@ RUN npm update -g npm && \
 
 ADD ./src /opt/hubot/
 WORKDIR "/opt/hubot"
-VOLUME ["/opt/hubot/conf"]
+VOLUME ["/opt/hubot/conf", "/opt/hubot/scripts"]
 
 ENTRYPOINT ["./bin/run-hubot"]
