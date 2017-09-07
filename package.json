@@ -4,9 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-      "build": "docker build -t kse201/hubot --build-arg http_proxy=${HTTP_PROXY} --build-arg https_proxy=${HTTPS_PROXY} ./",
-      "test-docker": "docker run kse201/hubot -n bot -a shell --external-scripts hubot-pugme",
-      "test": "./src/bin/run-hubot -a shell"
+    "start": "hubot",
+    "build": "docker build -t kse201/hubot --build-arg http_proxy=${HTTP_PROXY} --build-arg https_proxy=${HTTPS_PROXY} ./",
+    "test-docker": "docker run kse201/hubot -n bot -a shell --external-scripts hubot-pugme",
+    "test": "gulp test",
+    "watch": "gulp watch"
   },
   "repository": {
     "type": "git",
@@ -28,6 +30,13 @@
     "hubot-shell": "^1.0.2"
   },
   "engines": {
-    "node": "0.10.x"
+    "node": "8.4.0"
+  },
+  "devDependencies": {
+    "coffeelint": "^1.16.0",
+    "gulp": "^3.9.1",
+    "gulp-coffeelint": "^0.6.0",
+    "gulp-load-plugins": "^1.5.0",
+    "hubot-test-helper": "^1.7.0"
   }
 }
