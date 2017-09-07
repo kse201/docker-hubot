@@ -89,23 +89,10 @@ main() {
         is_failed $? && exit ${E_INI}
     fi
 
-    if [ -v "external_scripts" ] ; then
-        external_scripts=($(echo $external_scripts | tr -s ',' ' '))
-        echo ${external_scripts[@]}
-        install_scripts ${external_scripts}
-        create_script_json "external-scripts.json" ${external_scripts[@]}
-    fi
-
-    if [ -v "hubot_scripts" ] ; then
-        hubot_scripts=($(echo $hubot_scripts | tr -s ',' ' '))
-        create_script_json "hubot-scripts.json" ${hubot_scripts[@]}
-    fi
-
     install_adapter ${adapter}
 
     npm i
     exec ./node_modules/.bin/hubot -a ${adapter} -n ${name}
 }
 
-pushd $(dirname $0)/../
 main $@

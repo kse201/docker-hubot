@@ -1,17 +1,19 @@
-FROM centos:7
+FROM node:8.4.0-alpine
 MAINTAINER kse201 <kse.201@gmail.com>
 
-RUN yum update -y && \
-    yum install -y git epel-release && \
-    yum install -y nodejs redis npm && \
-    yum clean all
+ARG http_proxy
+ARG https_proxy
 
-RUN git config --global url."https://".insteadOf git://
-RUN npm update -g npm && \
-    npm cache clean
+ENV http_proxy=${http_proxy}
+ENV https_proxy=${https_proxy}
+ENV HTTP_PROXY=${http_proxy}
+ENV HTTPS_PROXY=${https_proxy}
 
-ADD ./src /opt/hubot/
-WORKDIR "/opt/hubot"
-VOLUME ["/opt/hubot/conf", "/opt/hubot/scripts"]
+RUN apk update -y && \
+    apk add --no-cache redis
+
+ADD ./ /hubot
+WORKDIR "/hubot"
+VOLUME ["/hubot/conf", "/hubot/scripts"]
 
 ENTRYPOINT ["./bin/run-hubot"]

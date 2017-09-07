@@ -4,3 +4,4 @@ node_modules
 _*
 var/*
 conf
+package-lock.json

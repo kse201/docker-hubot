@@ -1,0 +1,33 @@
+{
+  "name": "docker-hubot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+      "build": "docker build -t kse201/hubot --build-arg http_proxy=${HTTP_PROXY} --build-arg https_proxy=${HTTPS_PROXY} ./",
+      "test-docker": "docker run kse201/hubot -n bot -a shell --external-scripts hubot-pugme",
+      "test": "./src/bin/run-hubot -a shell"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kse201/docker-hubot.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kse201/docker-hubot/issues"
+  },
+  "homepage": "https://github.com/kse201/docker-hubot#readme",
+  "dependencies": {
+    "coffee-script": "~1.10.0",
+    "hubot": "~2.11.0",
+    "hubot-help": "~0.1.3",
+    "hubot-redis-brain": "0.0.2",
+    "hubot-scripts": "~2.5.16",
+    "hubot-shell": "^1.0.2"
+  },
+  "engines": {
+    "node": "0.10.x"
+  }
+}
