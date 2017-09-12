@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "hubot",
+    "start": "./bin/hubot",
     "build": "docker build -t kse201/hubot --build-arg http_proxy=${HTTP_PROXY} --build-arg https_proxy=${HTTPS_PROXY} ./",
     "test-docker": "docker run kse201/hubot -n bot -a shell --external-scripts hubot-pugme",
     "test": "gulp test",
