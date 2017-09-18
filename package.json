@@ -1,26 +1,11 @@
 {
   "name": "docker-hubot",
+  "description": "hubot scripts in docker",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "start": "./bin/hubot",
-    "build": "docker build -t kse201/hubot --build-arg http_proxy=${HTTP_PROXY} --build-arg https_proxy=${HTTPS_PROXY} ./",
-    "test-docker": "docker run kse201/hubot -n bot -a shell --external-scripts hubot-pugme",
-    "test": "gulp test",
-    "watch": "gulp watch"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/kse201/docker-hubot.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "MIT",
+  "author": "kse201",
   "bugs": {
     "url": "https://github.com/kse201/docker-hubot/issues"
   },
-  "homepage": "https://github.com/kse201/docker-hubot#readme",
   "dependencies": {
     "coffee-script": "~1.10.0",
     "hubot": "~2.11.0",
@@ -29,14 +14,31 @@
     "hubot-scripts": "~2.5.16",
     "hubot-shell": "^1.0.2"
   },
-  "engines": {
-    "node": "8.4.0"
-  },
   "devDependencies": {
     "coffeelint": "^1.16.0",
+    "fixpack": "^2.3.1",
     "gulp": "^3.9.1",
     "gulp-coffeelint": "^0.6.0",
     "gulp-load-plugins": "^1.5.0",
     "hubot-test-helper": "^1.7.0"
+  },
+  "engines": {
+    "node": "8.4.0"
+  },
+  "homepage": "https://github.com/kse201/docker-hubot#readme",
+  "keywords": [],
+  "license": "MIT",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kse201/docker-hubot.git"
+  },
+  "scripts": {
+    "build": "docker build -t kse201/hubot --build-arg http_proxy=${HTTP_PROXY} --build-arg https_proxy=${HTTPS_PROXY} ./",
+    "fixpack": "fixpack",
+    "start": "./bin/hubot",
+    "test": "gulp test",
+    "test-docker": "docker run kse201/hubot -n bot -a shell --external-scripts hubot-pugme",
+    "watch": "gulp watch"
   }
 }
